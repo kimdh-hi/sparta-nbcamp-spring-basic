@@ -2,7 +2,9 @@ package com.sparta.selectshop.controller.api;
 
 import com.sparta.selectshop.domain.Product;
 import com.sparta.selectshop.dto.ProductRequestDto;
+import com.sparta.selectshop.dto.SearchResultDto;
 import com.sparta.selectshop.repository.ProductRepository;
+import com.sparta.selectshop.utils.NaverShopSearch;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
