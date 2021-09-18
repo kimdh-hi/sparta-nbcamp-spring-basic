@@ -25,7 +25,9 @@ public class ProductApiController {
     //== 관심상품 등록 ==//
     @PostMapping("/products")
     public Product saveMyProduct(@RequestBody ProductRequestDto productRequestDto) {
+        System.out.println(productRequestDto);
         Product product = new Product(productRequestDto);
+
         productRepository.save(product);
         return product;
     }

@@ -9,6 +9,6 @@ public class SearchResultDto {
 
     private String title;
     private String image;
-    private String url;
+    private String link;
     private int lprice;
 }
