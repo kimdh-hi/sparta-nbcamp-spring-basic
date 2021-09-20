@@ -39,6 +39,10 @@ public class NaverShopSearch {
         String response = responseEntity.getBody();
 
         // String -> Json (JSON in Java)
+        return jsonToDto(response);
+    }
+
+    public List<SearchResultDto> jsonToDto(String response) {
         JSONObject jsonObject = new JSONObject(response);
         // Json 내 array
         JSONArray items = jsonObject.getJSONArray("items");

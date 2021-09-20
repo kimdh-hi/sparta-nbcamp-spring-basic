@@ -2,6 +2,7 @@ package com.sparta.selectshop.service;
 
 import com.sparta.selectshop.domain.Product;
 import com.sparta.selectshop.dto.ProductMyPriceRequestDto;
+import com.sparta.selectshop.dto.SearchResultDto;
 import com.sparta.selectshop.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -20,5 +21,11 @@ public class ProductService {
         product.setMyPrice(requestDto.getMyPrice());
 
         return product.getId();
+    }
+
+    public void updateBySearch(Long id, SearchResultDto searchResultDto) {
+        Product product = productRepository.findById(id).orElseThrow(IllegalArgumentException::new);
+
+        product.updateBySearchResultDto(searchResultDto);
     }
 }

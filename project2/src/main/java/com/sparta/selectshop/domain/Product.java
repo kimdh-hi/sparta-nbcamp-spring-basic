@@ -1,6 +1,7 @@
 package com.sparta.selectshop.domain;
 
 import com.sparta.selectshop.dto.ProductRequestDto;
+import com.sparta.selectshop.dto.SearchResultDto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -40,5 +41,9 @@ public class Product extends Timestamped{
         this.link = requestDto.getLink();
         this.lprice = requestDto.getLprice();
         this.myPrice = 0;
+    }
+
+    public void updateBySearchResultDto(SearchResultDto requestDto) {
+        this.lprice = requestDto.getLprice();
     }
 }
