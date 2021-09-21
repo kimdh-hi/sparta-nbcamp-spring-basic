@@ -129,7 +129,7 @@ function addProductItem(product) {
                 <div class="lprice">
                     <span>${lprice}</span>원
                 </div>
-                <div class=isgood "${product['lprice'] <= product['myprice'] ? '':'none'}">
+                <div class="isgood ${product['lprice'] > product.myprice ? 'none' : ''}">
                     최저가
                 </div>
             </div>

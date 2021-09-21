@@ -53,7 +53,7 @@ public class NaverShopSearch {
         for (int i=0; i<items.length();i++) {
             String title = items.getJSONObject(i).getString("title");
             String image = items.getJSONObject(i).getString("image");
-            String link = items.getJSONObject(i).getString("link");
+                String link = items.getJSONObject(i).getString("link");
             int lprice = items.getJSONObject(i).getInt("lprice");
 
             searchResultDtoList.add(new SearchResultDto(title, image, link, lprice));
