@@ -19,7 +19,7 @@ public class NaverShopSearch {
     @Value("${key.client}")
     private String client;
 
-    @Value("${key.secret")
+    @Value("${key.secret}")
     private String secret;
 
     public String search(String query) {
