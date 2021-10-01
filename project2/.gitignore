@@ -37,5 +37,4 @@ out/
 .vscode/
 
 key.properties
-application.properties
 *.properties

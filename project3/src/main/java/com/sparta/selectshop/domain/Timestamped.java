@@ -1,4 +1,4 @@
-package sparta.springcore.domain;
+package com.sparta.selectshop.domain;
 
 import lombok.Getter;
 import lombok.Setter;

@@ -1,11 +1,11 @@
-package sparta.springcore.controller;
+package com.sparta.selectshop.controller;
 
+import com.sparta.selectshop.dto.ItemDto;
+import com.sparta.selectshop.utils.NaverShopSearch;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import sparta.springcore.dto.ItemDto;
-import sparta.springcore.utils.NaverShopSearch;
 
 import java.util.List;
 

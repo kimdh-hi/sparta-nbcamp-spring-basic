@@ -1,5 +1,7 @@
-package sparta.springcore.utils;
+package com.sparta.selectshop.utils;
 
+import com.sparta.selectshop.dto.ItemDto;
+import lombok.extern.slf4j.Slf4j;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Value;
@@ -7,20 +9,17 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.http.*;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
-import sparta.springcore.dto.ItemDto;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Component
+@Slf4j
 @PropertySource("classpath:key.properties")
+@Component // 스프링 IoC 에 빈으로 등록
 public class NaverShopSearch {
 
-    @Value("${key.client}")
-    private String client;
-
-    @Value("${key.secret}")
-    private String secret;
+    @Value("${naver.search.client}") private String client;
+    @Value("${naver.search.secret}") private String secret;
 
     public String search(String query) {
         RestTemplate rest = new RestTemplate();
@@ -34,8 +33,6 @@ public class NaverShopSearch {
         HttpStatus httpStatus = responseEntity.getStatusCode();
         int status = httpStatus.value();
         String response = responseEntity.getBody();
-        System.out.println("Response status: " + status);
-        System.out.println(response);
 
         return response;
     }

@@ -1,9 +1,9 @@
-package sparta.springcore.domain;
+package com.sparta.selectshop.domain;
 
+import com.sparta.selectshop.dto.ProductRequestDto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import sparta.springcore.dto.ProductRequestDto;
 
 import javax.persistence.*;
 
@@ -42,4 +42,9 @@ public class Product extends Timestamped{
         this.lprice = requestDto.getLprice();
         this.myprice = 0;
     }
+
+    public void updateMyPrice(int myPrice) {
+        this.myprice=myPrice;
+    }
 }
+

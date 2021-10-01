@@ -1,4 +1,5 @@
-package sparta.springcore.dto;
+package com.sparta.selectshop.dto;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
