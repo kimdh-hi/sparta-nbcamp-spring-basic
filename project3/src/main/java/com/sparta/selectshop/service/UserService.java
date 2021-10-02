@@ -4,21 +4,19 @@ import com.sparta.selectshop.domain.User;
 import com.sparta.selectshop.domain.UserRole;
 import com.sparta.selectshop.dto.SignupRequestDto;
 import com.sparta.selectshop.repository.UserRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
+@RequiredArgsConstructor
 @Service
 public class UserService {
     private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
     private static final String ADMIN_TOKEN = "AAABnv/xRVklrnYxKZ0aHgTBcXukeZygoC";
-
-    @Autowired
-    public UserService(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
 
     public void registerUser(SignupRequestDto requestDto) {
         String username = requestDto.getUsername();
@@ -39,7 +37,8 @@ public class UserService {
             role = UserRole.ADMIN;
         }
 
-        User user = new User(username, password, email, role);
+        String encPassword = passwordEncoder.encode(password);
+        User user = new User(username, encPassword, email, role);
         userRepository.save(user);
     }
 }
