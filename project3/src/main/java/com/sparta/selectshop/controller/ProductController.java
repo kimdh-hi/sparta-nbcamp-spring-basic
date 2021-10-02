@@ -3,9 +3,11 @@ package com.sparta.selectshop.controller;
 import com.sparta.selectshop.domain.Product;
 import com.sparta.selectshop.dto.ProductMypriceRequestDto;
 import com.sparta.selectshop.dto.ProductRequestDto;
+import com.sparta.selectshop.security.UserDetailsImpl;
 import com.sparta.selectshop.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 import java.sql.SQLException;
 import java.util.List;
@@ -24,16 +26,20 @@ public class ProductController {
 
     // 등록된 전체 상품 목록 조회
     @GetMapping("/api/products")
-    public List<Product> getProducts() throws SQLException {
-        List<Product> products = productService.getProducts();
+    public List<Product> getProducts(@AuthenticationPrincipal UserDetailsImpl userDetails) throws SQLException {
+        Long userId = userDetails.getUser().getId();
+        List<Product> products = productService.getProducts(userId);
         // 응답 보내기
         return products;
     }
 
     // 신규 상품 등록
     @PostMapping("/api/products")
-    public Product createProduct(@RequestBody ProductRequestDto requestDto) throws SQLException {
-        Product product = productService.createProduct(requestDto);
+    public Product createProduct(
+            @RequestBody ProductRequestDto requestDto,
+            @AuthenticationPrincipal UserDetailsImpl userDetails) throws SQLException {
+        Long userId = userDetails.getUser().getId();
+        Product product = productService.createProduct(requestDto, userId);
         // 응답 보내기
         return product;
     }

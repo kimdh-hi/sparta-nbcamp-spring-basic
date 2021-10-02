@@ -4,6 +4,7 @@ import com.sparta.selectshop.domain.Product;
 import com.sparta.selectshop.dto.ProductMypriceRequestDto;
 import com.sparta.selectshop.dto.ProductRequestDto;
 import com.sparta.selectshop.repository.ProductRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,27 +12,21 @@ import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class ProductService {
     // 멤버 변수 선언
     private final ProductRepository productRepository;
     private static final int MIN_PRICE = 100;
 
-    // 생성자: ProductService() 가 생성될 때 호출됨
-    @Autowired
-    public ProductService(ProductRepository productRepository) {
-        // 멤버 변수 생성
-        this.productRepository = productRepository;
-    }
-
-    public List<Product> getProducts() {
+    public List<Product> getProducts(Long userId) {
         // 멤버 변수 사용
-        return productRepository.findAll();
+        return productRepository.findAllByUserId(userId);
     }
 
     @Transactional // 메소드 동작이 SQL 쿼리문임을 선언합니다.
-    public Product createProduct(ProductRequestDto requestDto) {
+    public Product createProduct(ProductRequestDto requestDto, Long userId) {
         // 요청받은 DTO 로 DB에 저장할 객체 만들기
-        Product product = new Product(requestDto);
+        Product product = new Product(requestDto, userId);
         productRepository.save(product);
         return product;
     }
