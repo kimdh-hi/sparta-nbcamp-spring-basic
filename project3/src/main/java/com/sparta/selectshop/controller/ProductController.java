@@ -7,6 +7,7 @@ import com.sparta.selectshop.security.UserDetailsImpl;
 import com.sparta.selectshop.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 import java.sql.SQLException;
@@ -31,6 +32,12 @@ public class ProductController {
         List<Product> products = productService.getProducts(userId);
         // 응답 보내기
         return products;
+    }
+
+    @Secured("ROLE_ADMIN")
+    @GetMapping("/api/admin/products")
+    public List<Product> getAllProducts() {
+        return productService.getProductsByAdmin();
     }
 
     // 신규 상품 등록
